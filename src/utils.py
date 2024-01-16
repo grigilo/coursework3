@@ -1,18 +1,17 @@
+from config import *
 import json
-import os
 from datetime import datetime
 import re
 
 
 def open_file():
-    """Открываем файл json
+    """
+    Открываем json файл
     :return:
     """
-
-    json_file = os.path.join('..', '..', 'coursework3', 'operations.json')
-    with open(json_file, encoding='utf-8') as file:
-        new_data = json.loads(file.read())
-    return new_data
+    with open(OPERATIONS, encoding="utf-8") as file:
+        data_list = json.load(file)
+        return data_list
 
 
 def filter_list_execut(data):
@@ -48,7 +47,7 @@ def format_date(data):
     x = []
     for item in data:
         item = datetime.fromisoformat(item['date'].replace('T', ' '))
-        x.append(item.strftime('%d-%m-%Y'))
+        x.append(item.strftime('%d.%m.%Y'))
 
     return x
 
